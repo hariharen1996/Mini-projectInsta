@@ -1,0 +1,126 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.search-results {
+  margin-left: 20px;
+}
+.search-results-text {
+  color: #262626;
+  font-size: 20px;
+}
+
+.posts-failure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.posts-failure-img {
+  width: 48px;
+  height: 48px;
+}
+
+.posts-failure-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.posts-failure-btn {
+  background-color: #4094ef;
+  color: #ffffff;
+  width: 130px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 8px 24px 8px 24px;
+  cursor: pointer;
+}
+
+.insta-posts-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.insta-posts-items {
+  width: 100%;
+  padding-left: 0px;
+}
+.search-failure-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 20px;
+}
+.search-img {
+  width: 500px;
+  height: 409px;
+}
+
+.search-heading {
+  font-size: 32px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.search-text {
+  font-size: 20px;
+  font-weight: 400;
+  color: #989898;
+}
+
+@media screen and (min-width: 900px) {
+  .insta-posts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .search-failure-container {
+    margin-right: 25px;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .posts-failure-text {
+    font-size: 12px;
+  }
+  .posts-failure-btn {
+    width: 110px;
+    height: 32px;
+  }
+  .search-img {
+    width: 258px;
+    height: 210px;
+  }
+  .search-heading {
+    font-size: 20px;
+  }
+  .search-text {
+    font-size: 16px;
+  }
+  .posts-failure-img {
+    width: 30px;
+    height: 30px;
+  }
+}

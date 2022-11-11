@@ -1,0 +1,272 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.user-profile-lists {
+  list-style: none;
+}
+
+.user-heading-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+}
+
+.user-profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.user-profile-heading {
+  font-size: 32px;
+  font-weight: 300;
+  color: #262626;
+}
+
+.user-heading-sm {
+  display: none;
+}
+
+.user-profile-follower-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-text-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+.user-profile-posts-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.user-profile-text {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.sub-username {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.user-bio-text {
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 675px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  line-height: 1.7;
+}
+
+.user-desc-sm {
+  display: none;
+}
+
+.users-stories-card {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 85px;
+  padding-left: 0px;
+}
+
+.users-stories-img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.stories-img-lists {
+  list-style: none;
+}
+
+.user-posts-card {
+  margin-top: 10px;
+}
+
+.user-card-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  padding-left: 0px;
+  margin-bottom: 20px;
+}
+
+.user-card-lists {
+  list-style: none;
+}
+
+.user-posts-img {
+  width: 330px;
+  height: 330px;
+}
+
+.line {
+  color: #c6c6c6;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.user-posts-heading {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.posts-heading {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.posts-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.no-posts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.no-posts-icon-container {
+  border: 1px solid #262626;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-posts-icon {
+  color: #262626;
+  width: 48px;
+  height: 48px;
+}
+
+.no-posts-text {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+@media screen and (max-width: 1100px) {
+  .user-posts-img {
+    width: 250px;
+    height: 250px;
+  }
+  .line {
+    margin-right: 20px;
+  }
+  .user-bio-text {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .user-posts-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .user-posts-img {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user-posts-img {
+    width: 118px;
+    height: 118px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .user-posts-img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .user-heading-lg {
+    display: none;
+  }
+  .user-heading-sm {
+    display: block;
+  }
+  .user-desc-sm {
+    display: block;
+  }
+  .user-desc-lg {
+    display: none;
+  }
+  .user-profile-img {
+    width: 96px;
+    height: 96px;
+  }
+  .user-text-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .user-profile-heading {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .users-stories-img {
+    width: 56px;
+    height: 56px;
+  }
+  .posts-icon {
+    width: 14px;
+    height: 14px;
+  }
+  .posts-heading {
+    font-size: 14px;
+  }
+  .no-posts-text {
+    font-size: 18px;
+  }
+  .no-posts-icon-container {
+    width: 48px;
+    height: 48px;
+  }
+  .no-posts-icon {
+    width: 29px;
+    height: 26px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .user-profile-text {
+    font-size: 12px;
+  }
+  .user-profile-posts-text {
+    font-size: 12px;
+  }
+}

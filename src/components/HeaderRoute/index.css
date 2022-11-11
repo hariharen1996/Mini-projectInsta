@@ -1,0 +1,200 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.navbar-container-lg {
+  width: 100%;
+  height: 64px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid #989898;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+}
+
+.nav-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-logo {
+  width: 60px;
+  cursor: pointer;
+}
+
+.insta-heading {
+  color: #262626;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nav-items-lg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-lists-lg {
+  list-style: none;
+  cursor: pointer;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 214px;
+  height: 28px;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+}
+
+.search-input::placeholder {
+  color: #989898;
+}
+
+.search-icon-container {
+  background-color: #dbdbdb;
+  color: #989898;
+  width: 34px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.search-input:hover {
+  border: none;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  outline: none;
+  color: #989898;
+}
+
+.active {
+  color: #4094ef;
+}
+
+.nav-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  width: 86px;
+  height: 32px;
+  background-color: #4094ef;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px 24px 8px 24px;
+  border-radius: 4px;
+}
+
+.menu-container {
+  display: none;
+  list-style: none;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.nav-container-sm {
+  display: none;
+}
+
+.search-sm {
+  display: none;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: #262626;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-lists-lg {
+    display: none;
+  }
+  .menu-container {
+    display: block;
+    margin-top: 5px;
+  }
+  .navbar-container-lg {
+    justify-content: space-between;
+  }
+  .menu-icon {
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .nav-container-sm {
+    display: block;
+  }
+  .nav-lists-sm {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    padding-left: 0px;
+    cursor: pointer;
+  }
+  .close-btn {
+    background: none;
+    outline: none;
+    border: none;
+  }
+  .close-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .logout-btn {
+    width: 86px;
+    height: 32px;
+  }
+  .search-sm {
+    margin: 10px;
+    display: block;
+  }
+  .search-input-sm {
+    width: 100%;
+  }
+  .search-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logout-btn {
+    width: 90px;
+    height: 30px;
+    font-size: 10px;
+  }
+  .nav-text {
+    font-size: 12px;
+  }
+}

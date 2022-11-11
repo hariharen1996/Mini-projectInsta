@@ -1,0 +1,112 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.stories-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 30vh;
+}
+
+.stories-failure-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 30vh;
+}
+
+.alert-icon {
+  width: 44px;
+  height: 38px;
+}
+
+.stories-failure-text {
+  color: #262626;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stories-failure-btn {
+  background-color: #4094ef;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 8px 24px 8px 24px;
+  cursor: pointer;
+  width: 130px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.stories-failure-img {
+  width: 48px;
+  height: 48px;
+}
+
+.insta-stories-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.slider-container {
+  width: 80%;
+  margin-top: 60px;
+}
+
+.slider {
+  padding-left: 0px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: #334155;
+}
+
+.stories-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stories-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+.stories-text {
+  font-size: 12px;
+  font-weight: 400px;
+  color: #262626;
+  text-align: center;
+}
+
+@media screen and (max-width: 776px) {
+  .stories-img {
+    width: 50px;
+    height: 50px;
+  }
+  .stories-text {
+    font-size: 10px;
+  }
+  .stories-failure-text {
+    font-size: 12px;
+  }
+  .stories-failure-btn {
+    width: 110px;
+    height: 32px;
+  }
+}

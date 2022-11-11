@@ -1,0 +1,130 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.user-posts-list {
+  list-style: none;
+  padding-left: 0px;
+  border: 1px solid #dbdbdb;
+  margin-bottom: 50px;
+}
+
+.username-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border-radius: 4px 4px 0px 0px;
+  margin-left: 15px;
+}
+
+.profile-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.username-text {
+  color: #262626;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.posts-img {
+  width: 100%;
+  height: 500px;
+}
+
+.posts-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.posts-icons-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.like-container {
+  margin-top: 4px;
+}
+
+.like-btn {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+.like-count {
+  font-weight: 600;
+  font-size: 14px;
+  color: #262626;
+}
+
+.posts-comment {
+  padding-left: 0px;
+}
+
+.comments-lists {
+  list-style: none;
+}
+
+.comments-container {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.comments-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px;
+}
+
+.comments-msg {
+  color: #262626;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 5px;
+}
+
+.posts-date {
+  color: #989898;
+  font-size: 14px;
+}
+
+.users-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+@media screen and (min-width: 900px) {
+  .posts-img {
+    width: 100%;
+    height: 500px;
+  }
+  .user-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .posts-img {
+    height: 400px;
+  }
+}

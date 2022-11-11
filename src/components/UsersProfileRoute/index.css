@@ -1,0 +1,72 @@
+* {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.profile-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.profile-failure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.profile-failure-img {
+  width: 560px;
+  height: 274px;
+}
+
+.profile-failure-text {
+  font-size: 32px;
+  font-weight: 400;
+  color: #262626;
+}
+
+.profile-failure-btn {
+  background-color: #4094ef;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px 24px 8px 24px;
+  cursor: pointer;
+  width: 130px;
+  height: 32px;
+}
+
+.profile-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 996px) {
+  .profile-container {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .profile-failure-img {
+    width: 260px;
+    height: 127px;
+  }
+  .profile-failure-text {
+    font-size: 16px;
+  }
+  .profile-failure-btn {
+    width: 110px;
+    height: 32px;
+  }
+}
