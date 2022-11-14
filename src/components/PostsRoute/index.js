@@ -5,10 +5,26 @@ import {BsHeart} from 'react-icons/bs'
 import {FaRegComment} from 'react-icons/fa'
 import {FcLike} from 'react-icons/fc'
 import {BiShareAlt} from 'react-icons/bi'
+import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
 class PostsRoute extends Component {
-  state = {likedPosts: false}
+  state = {
+    likedPosts: false,
+    description: '',
+    commentData: [],
+    isComment: false,
+  }
+
+  changeDescription = event => {
+    this.setState({description: event.target.value})
+  }
+
+  showComment = () => {
+    this.setState(prevState => ({
+      isComment: !prevState.isComment,
+    }))
+  }
 
   showLike = async () => {
     const {likedPosts} = this.state
@@ -39,8 +55,28 @@ class PostsRoute extends Component {
     console.log(data)
   }
 
+  commentSubmit = event => {
+    event.preventDefault()
+    const {description} = this.state
+    const {items} = this.props
+    const {username, userId} = items
+    if (description !== '') {
+      const newData = {
+        userId,
+        username,
+        description,
+      }
+
+      this.setState(prevState => ({
+        commentData: [...prevState.commentData, newData],
+        description: '',
+      }))
+    }
+  }
+
   render() {
-    const {items, searchInput} = this.props
+    const {items} = this.props
+    const {description, commentData, isComment} = this.state
     const {
       userId,
       profilePic,
@@ -52,98 +88,130 @@ class PostsRoute extends Component {
     } = items
     const {imageUrl, caption} = postDetails
     const {likedPosts} = this.state
+
     return (
-      <li className="user-posts-list">
-        <div className="username-container">
-          {searchInput === '' ? (
-            <>
-              <div className="user-img-container">
-                <img
-                  src={profilePic}
-                  alt="post author profile"
-                  className="profile-img"
-                />
-              </div>
-              <Link to={`users/${userId}`} className="users-link">
-                <p className="username-text">{username}</p>
-              </Link>
-            </>
-          ) : (
-            <Link to={`users/${userId}`} className="users-link">
-              <div className="user-img-container">
-                <img
-                  src={profilePic}
-                  alt="post author profile"
-                  className="profile-img"
-                />
-              </div>
-              <p className="username-text">{username}</p>
-            </Link>
-          )}
-        </div>
+      <ThemeContext.Consumer>
+        {value => {
+          const {showTheme} = value
 
-        <div className="user-posts">
-          <img src={imageUrl} className="posts-img" alt="post" />
-        </div>
-        <div className="posts-content">
-          <div className="posts-icons-container">
-            <div className="like-container">
-              {likedPosts ? (
-                <button
-                  type="button"
-                  className="like-btn"
-                  // eslint-disable-next-line react/no-unknown-property
-                  testid="unLikeIcon"
-                  onClick={this.showLike}
-                >
-                  <FcLike className="like" size={25} />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="like-btn"
-                  // eslint-disable-next-line react/no-unknown-property
-                  testid="likeIcon"
-                  onClick={this.showLike}
-                >
-                  <BsHeart className="unlike" size={25} />
-                </button>
-              )}
-            </div>
-            <button type="button" className="button">
-              <FaRegComment className="comment-icon" size={25} />
-            </button>
-            <button type="button" className="button">
-              <BiShareAlt className="share-icon" size={24} />
-            </button>
-          </div>
-          <p className="likes-count">
-            {likedPosts ? likesCount + 1 : likesCount} likes
-          </p>
-          <p className="posts-caption">{caption}</p>
-          <ul className="posts-comment">
-            {comments.map(commentItems => (
-              <li key={commentItems.user_id} className="comments-lists">
-                {searchInput === '' ? (
-                  <p className="comments-container">
-                    {commentItems.user_name}
-                    {commentItems.comment}
-                  </p>
-                ) : (
-                  <p className="comments-container">
-                    <span className="comments-name">
-                      {commentItems.user_name}
-                    </span>
-                    {commentItems.comment}
-                  </p>
+          const cardBg = showTheme ? 'card-dark' : 'card-light'
+          const cardText = !showTheme ? 'cardText-dark' : 'cardText-light'
+          const commentInput = !showTheme ? 'cmDark' : 'cmLight'
+          const commentText = showTheme ? 'cmTextDark' : 'cmLTextLight'
+          const commentMsgText = showTheme ? 'cmMsgDark' : 'cmMsgLight'
+
+          return (
+            <li className="user-posts-list">
+              <div className={`username-container ${cardBg}`}>
+                <div className="user-img-container">
+                  <img
+                    src={profilePic}
+                    alt="post author profile"
+                    className="profile-img"
+                  />
+                </div>
+                <Link to={`users/${userId}`} className="users-link">
+                  <h1 className={`username-text ${cardText}`}>{username}</h1>
+                </Link>
+              </div>
+
+              <div className="user-posts">
+                <img src={imageUrl} className="posts-img" alt="post" />
+              </div>
+              <div className={`posts-content ${cardBg}`}>
+                <div className="posts-icons-container">
+                  <div className="like-container">
+                    {likedPosts ? (
+                      <button
+                        type="button"
+                        className={`like-btn ${cardText}`}
+                        // eslint-disable-next-line react/no-unknown-property
+                        testid="unLikeIcon"
+                        onClick={this.showLike}
+                      >
+                        <FcLike className="like" size={25} />
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className={`like-btn ${cardText}`}
+                        // eslint-disable-next-line react/no-unknown-property
+                        testid="likeIcon"
+                        onClick={this.showLike}
+                      >
+                        <BsHeart className="unlike" size={25} />
+                      </button>
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={this.showComment}
+                  >
+                    <FaRegComment
+                      className={`comment-icon ${cardText}`}
+                      size={25}
+                    />
+                  </button>
+                  <button type="button" className="button">
+                    <BiShareAlt
+                      className={`share-icon ${cardText}`}
+                      size={24}
+                    />
+                  </button>
+                </div>
+                {isComment && (
+                  <div className="add-comment-container">
+                    <form
+                      className="comment-form"
+                      onSubmit={this.commentSubmit}
+                    >
+                      <input
+                        type="text"
+                        className={`comment-input ${commentInput}`}
+                        placeholder="Add a comment..."
+                        value={description}
+                        onChange={this.changeDescription}
+                      />
+                      <button type="submit" className="comment-btn">
+                        Post
+                      </button>
+                    </form>
+                  </div>
                 )}
-              </li>
-            ))}
-          </ul>
+                <p className={`likes-count ${cardText}`}>
+                  {likedPosts ? likesCount + 1 : likesCount} likes
+                </p>
+                <p className={`posts-caption ${cardText}`}>{caption}</p>
+                <div className="posts-comment">
+                  {comments.map(item => (
+                    <p key={item.user_id} className="comments-container">
+                      <span className={`comments-name ${commentText}`}>
+                        {item.user_name}
+                      </span>
+                      <span className={`comments-msg ${commentMsgText}`}>
+                        {item.comment}
+                      </span>
+                    </p>
+                  ))}
+                  {commentData.map(newComment => (
+                    <p key={newComment.userId} className="comments-container">
+                      <span className={`comments-name ${commentText}`}>
+                        {newComment.username}
+                      </span>
+                      <span className={`comments-msg ${commentMsgText}`}>
+                        {newComment.description}
+                      </span>
+                    </p>
+                  ))}
+                </div>
 
-          <p className="posts-date">{createdAt}</p>
-        </div>
-      </li>
+                <p className={`posts-date ${cardText}`}>{createdAt}</p>
+              </div>
+            </li>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

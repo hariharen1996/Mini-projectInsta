@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import {RiMoonClearFill, RiMoonClearLine} from 'react-icons/ri'
+import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
 class LoginRoute extends Component {
@@ -51,55 +53,89 @@ class LoginRoute extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div className="login-bg-container">
-        <div className="login-container">
-          <div className="image-container">
-            <img
-              src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667563656/instashare_home_page_gmrsoo.png"
-              className="landing-image"
-              alt="website login"
-            />
-          </div>
-          <div className="form-container">
-            <img
-              src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667563670/insta_share_logo_qwwd90.png"
-              className="logo-img"
-              alt="website logo"
-            />
-            <h1 className="logo-heading">Insta Share</h1>
-            <form className="form" onSubmit={this.submitLogin}>
-              <label htmlFor="username" className="form-label">
-                Username
-              </label>
-              <input
-                type="text"
-                id="username"
-                placeholder="Username"
-                className="form-input"
-                value={username}
-                onChange={this.changeUsername}
-              />
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                className="form-input"
-                value={password}
-                onChange={this.changePassword}
-              />
-              {showError && <p className="error-msg">{error}</p>}
-              <div className="form-btn-container">
-                <button type="submit" className="form-login-btn">
-                  Login
+      <ThemeContext.Consumer>
+        {value => {
+          const {showTheme, themeChange} = value
+
+          const onThemeChange = () => {
+            themeChange()
+          }
+
+          const textColor = !showTheme ? 'textDark' : 'textWhite'
+          const bgColor = showTheme ? 'bgDark' : 'bgLight'
+
+          return (
+            <div className="login-bg-container">
+              <div className="login-theme-container">
+                <button
+                  className="theme-btn"
+                  type="button"
+                  onClick={onThemeChange}
+                >
+                  {showTheme ? (
+                    <RiMoonClearLine className="theme-icon theme" />
+                  ) : (
+                    <RiMoonClearFill className="theme-icon" />
+                  )}
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
+              <div className="login-container">
+                <div className="image-container">
+                  <img
+                    src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667563656/instashare_home_page_gmrsoo.png"
+                    className="landing-image"
+                    alt="website login"
+                  />
+                </div>
+                <div className={`form-container ${bgColor}`}>
+                  <img
+                    src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667563670/insta_share_logo_qwwd90.png"
+                    className="logo-img"
+                    alt="website logo"
+                  />
+                  <h1 className={`logo-heading ${textColor}`}>Insta Share</h1>
+                  <form className="form" onSubmit={this.submitLogin}>
+                    <label
+                      htmlFor="username"
+                      className={`form-label ${textColor}`}
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      placeholder="Username"
+                      className={`form-input ${textColor}`}
+                      value={username}
+                      onChange={this.changeUsername}
+                    />
+                    <label
+                      htmlFor="password"
+                      className={`form-label ${textColor}`}
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Password"
+                      className={`form-input ${textColor}`}
+                      value={password}
+                      onChange={this.changePassword}
+                    />
+                    {showError && <p className="error-msg">{error}</p>}
+                    <div className="form-btn-container">
+                      <button type="submit" className="form-login-btn">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

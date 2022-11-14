@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import HeaderRoute from '../HeaderRoute/index'
 import StoriesRoute from '../StoriesRoute/index'
 import PostsRoute from '../PostsRoute/index'
+import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
 const statusTypes = {
@@ -15,7 +16,11 @@ const statusTypes = {
 }
 
 class HomeRoute extends Component {
-  state = {instaPosts: [], apiStatus: statusTypes.initial, searchInput: ''}
+  state = {
+    instaPosts: [],
+    apiStatus: statusTypes.initial,
+    searchInput: '',
+  }
 
   componentDidMount() {
     this.getInstaPosts()
@@ -23,8 +28,8 @@ class HomeRoute extends Component {
 
   getInstaPosts = async () => {
     this.setState({apiStatus: statusTypes.loading})
-    const jwtToken = Cookies.get('jwt_token')
     const {searchInput} = this.state
+    const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
       headers: {
@@ -61,7 +66,7 @@ class HomeRoute extends Component {
   }
 
   onSearch = event => {
-    this.setState({searchInput: event.target.value})
+    this.setState({searchInput: event.target.value}, this.getInstaPosts)
   }
 
   searchInstaPosts = () => {
@@ -70,34 +75,50 @@ class HomeRoute extends Component {
 
   postsSuccessData = () => {
     const {instaPosts, searchInput} = this.state
-    const postsLength = instaPosts.length
-    return postsLength !== 0 ? (
-      <>
-        <div className="search-results">
-          {searchInput && (
-            <h1 className="search-results-text">Search Results</h1>
-          )}
-        </div>
-        <ul className="insta-posts-items">
-          {instaPosts.map(items => (
-            <PostsRoute
-              items={items}
-              key={items.postId}
-              searchInput={searchInput}
-            />
-          ))}
-        </ul>
-      </>
-    ) : (
-      <div className="search-failure-container">
-        <img
-          src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899788/instashare-search_im9amq.png"
-          className="search-img"
-          alt="search not found"
-        />
-        <h1 className="search-heading">Search Not Found</h1>
-        <p className="search-text">Try different keyword or search again</p>
-      </div>
+
+    return (
+      <ThemeContext.Consumer>
+        {value => {
+          const {showTheme} = value
+
+          const textColor = !showTheme ? 'textDark' : 'textLight'
+
+          return instaPosts.length !== 0 ? (
+            <>
+              {searchInput && (
+                <div className="search-results">
+                  <h1 className={`search-results-text ${textColor}`}>
+                    Search Results
+                  </h1>
+                </div>
+              )}
+              <ul className="insta-posts-items">
+                {instaPosts.map(items => (
+                  <PostsRoute
+                    items={items}
+                    key={items.postId}
+                    searchInput={searchInput}
+                  />
+                ))}
+              </ul>
+            </>
+          ) : (
+            <div className="search-failure-container">
+              <img
+                src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899788/instashare-search_im9amq.png"
+                className="search-img"
+                alt="search not found"
+              />
+              <h1 className={`search-heading ${textColor}`}>
+                Search Not Found
+              </h1>
+              <p className={`search-text ${textColor}`}>
+                Try different keyword or search again
+              </p>
+            </div>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
@@ -109,23 +130,31 @@ class HomeRoute extends Component {
   )
 
   postsFailureData = () => (
-    <div className="posts-failure">
-      <img
-        src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899796/instashare-alert_dxppnx.png"
-        className="posts-failure-img"
-        alt="failure view"
-      />
-      <p className="posts-failure-text">
-        Something went wrong. Please try again
-      </p>
-      <button
-        type="button"
-        className="posts-failure-btn"
-        onClick={this.getInstaPosts}
-      >
-        Try again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {showTheme} = value
+        const textColor = !showTheme ? 'textDark' : 'textLight'
+        return (
+          <div className="posts-failure">
+            <img
+              src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899796/instashare-alert_dxppnx.png"
+              className="posts-failure-img"
+              alt="failure view"
+            />
+            <p className={`posts-failure-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="posts-failure-btn"
+              onClick={this.getInstaPosts}
+            >
+              Try again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   postsStatus = () => {
@@ -155,10 +184,18 @@ class HomeRoute extends Component {
           searchInstaPosts={this.searchInstaPosts}
           onSearch={this.onSearch}
         />
-        <div className="insta-stories">
-          <StoriesRoute />
-        </div>
-        <div className="insta-posts-container">{this.postsStatus()}</div>
+        {searchInput !== '' ? (
+          <>
+            <div className="insta-posts-container">{this.postsStatus()}</div>
+          </>
+        ) : (
+          <>
+            <div className="insta-stories">
+              <StoriesRoute />
+            </div>
+            <div className="insta-posts-container">{this.postsStatus()}</div>
+          </>
+        )}
       </>
     )
   }

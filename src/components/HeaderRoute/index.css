@@ -10,8 +10,22 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.bg-dark {
+  background-color: #262626;
+  border-bottom: 1px solid #fafafa;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+}
+
+.bg-light {
+  background-color: #ffffff;
   border-bottom: 1px solid #989898;
   box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+}
+
+.theme {
+  color: #fafafa;
 }
 
 .nav-logo-container {
@@ -21,15 +35,36 @@
   gap: 5px;
 }
 
+.nav-active {
+  color: #4094ef !important;
+  text-decoration: none;
+}
+
 .nav-logo {
   width: 60px;
   cursor: pointer;
 }
 
 .insta-heading {
-  color: #262626;
   font-size: 16px;
   font-weight: 500;
+}
+
+.text-dark {
+  color: #262626;
+}
+
+.text-light {
+  color: #fafafa;
+}
+
+.nav-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-text:hover {
+  color: #4094ef;
 }
 
 .nav-items-lg {
@@ -61,13 +96,13 @@
 }
 
 .search-icon-container {
-  background-color: #dbdbdb;
-  color: #989898;
   width: 34px;
-  height: 26px;
+  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #dbdbdb;
+  color: #fafafa;
 }
 
 .search-icon {
@@ -84,15 +119,6 @@
   border: none;
   outline: none;
   color: #989898;
-}
-
-.active {
-  color: #4094ef;
-}
-
-.nav-text {
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .logout-btn {
@@ -117,6 +143,28 @@
   background: none;
   border: none;
   outline: none;
+}
+
+.theme-container {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.theme-btn {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.theme-icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.menu-icon {
+  font-size: 20px;
 }
 
 .nav-container-sm {
@@ -144,7 +192,7 @@
     justify-content: space-between;
   }
   .menu-icon {
-    font-size: 25px;
+    font-size: 20px;
     cursor: pointer;
   }
   .nav-container-sm {

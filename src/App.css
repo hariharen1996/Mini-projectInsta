@@ -10,3 +10,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.bodyBg-dark {
+  background-color: #000000;
+}
+
+.bodyBg-light {
+  background-color: #ffffff;
+}

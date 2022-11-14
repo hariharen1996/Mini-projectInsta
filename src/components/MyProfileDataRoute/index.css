@@ -4,3 +4,31 @@
   gap: 25px;
   padding-left: 0px;
 }
+
+.myprofile-stories-img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 2px solid #f01f50;
+}
+
+.myprofile-lists {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .myprofile-stories-img {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile-line {
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+  .myprofile-stories-img {
+    margin-top: 15px;
+  }
+}

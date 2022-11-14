@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import MyProfileDataRoute from '../MyProfileDataRoute/index'
 import HeaderRoute from '../HeaderRoute/index'
+import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
 const statusTypes = {
@@ -75,23 +76,31 @@ class MyProfileRoute extends Component {
   )
 
   myProfileDataFailure = () => (
-    <div className="profile-failure">
-      <img
-        src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667738087/user_profile_error_ldgh2p.png"
-        className="profile-failure-img"
-        alt="failure view"
-      />
-      <p className="profile-failure-text">
-        Something went wrong. Please try again
-      </p>
-      <button
-        type="button"
-        className="profile-failure-btn"
-        onClick={this.myProfileApi}
-      >
-        Try again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {showTheme} = value
+        const textColor = !showTheme ? 'textDark' : 'textLight'
+        return (
+          <div className="profile-failure">
+            <img
+              src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667738087/user_profile_error_ldgh2p.png"
+              className="profile-failure-img"
+              alt="failure view"
+            />
+            <p className={`profile-failure-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="profile-failure-btn"
+              onClick={this.myProfileApi}
+            >
+              Try again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   myProfileStatus = () => {

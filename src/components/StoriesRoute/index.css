@@ -25,7 +25,6 @@
 }
 
 .stories-failure-text {
-  color: #262626;
   font-size: 14px;
   font-weight: 500;
 }
@@ -38,7 +37,7 @@
   padding: 8px 24px 8px 24px;
   cursor: pointer;
   width: 130px;
-  height: 32px;
+  height: 38px;
   border-radius: 8px;
 }
 
@@ -85,13 +84,21 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  border: 2px double #f01f50;
 }
 
 .stories-text {
   font-size: 12px;
   font-weight: 400px;
-  color: #262626;
   text-align: center;
+}
+
+.text-dark {
+  color: #262626;
+}
+
+.text-light {
+  color: #ffffff;
 }
 
 @media screen and (max-width: 776px) {
@@ -108,5 +115,9 @@
   .stories-failure-btn {
     width: 110px;
     height: 32px;
+  }
+  .stories-failure-img {
+    width: 30px;
+    height: 30px;
   }
 }

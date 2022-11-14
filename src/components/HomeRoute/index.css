@@ -13,10 +13,11 @@
 
 .search-results {
   margin-left: 20px;
+  display: flex;
+  align-self: flex-start;
 }
 .search-results-text {
-  color: #262626;
-  font-size: 20px;
+  font-size: 32px;
 }
 
 .posts-failure {
@@ -74,13 +75,19 @@
 .search-heading {
   font-size: 32px;
   font-weight: 500;
-  color: #262626;
 }
 
 .search-text {
   font-size: 20px;
   font-weight: 400;
-  color: #989898;
+}
+
+.textDark {
+  color: #262626;
+}
+
+.textLight {
+  color: #ffffff;
 }
 
 @media screen and (min-width: 900px) {
@@ -122,5 +129,8 @@
   .posts-failure-img {
     width: 30px;
     height: 30px;
+  }
+  .search-results-text {
+    font-size: 18px;
   }
 }

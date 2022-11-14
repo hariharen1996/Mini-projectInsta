@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
+import ThemeContext from '../../context/ThemeContext'
 import './index.css'
 
 const statusTypes = {
@@ -48,67 +49,76 @@ class StoriesRoute extends Component {
     }
   }
 
-  storiesSuccessData = () => {
-    const {storiesData} = this.state
-    const settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 8,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1400,
-          settings: {
-            slidesToShow: 7,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 6,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 900,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    }
+  storiesSuccessData = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {showTheme} = value
+        const {storiesData} = this.state
+        const settings = {
+          dots: false,
+          infinite: false,
+          speed: 500,
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 1400,
+              settings: {
+                slidesToShow: 7,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 6,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 900,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        }
 
-    return (
-      <>
-        <ul className="slider">
-          <Slider {...settings}>
-            {storiesData.map(items => (
-              <li key={items.userId} className="stories-content">
-                <div className="text-center">
-                  <img
-                    src={items.storyUrl}
-                    className="stories-img"
-                    alt="user story"
-                  />
-                </div>
-                <p className="stories-text">{items.username}</p>
-              </li>
-            ))}
-          </Slider>
-        </ul>
-      </>
-    )
-  }
+        const textColor = !showTheme ? 'text-dark' : 'text-light'
+
+        return (
+          <>
+            <ul className="slider">
+              <Slider {...settings}>
+                {storiesData.map(items => (
+                  <li key={items.userId} className="stories-content">
+                    <div className="text-center">
+                      <img
+                        src={items.storyUrl}
+                        className="stories-img"
+                        alt="user story"
+                      />
+                    </div>
+                    <p className={`stories-text ${textColor}`}>
+                      {items.username}
+                    </p>
+                  </li>
+                ))}
+              </Slider>
+            </ul>
+          </>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   storiesLoadingData = () => (
     // eslint-disable-next-line react/no-unknown-property
@@ -118,23 +128,31 @@ class StoriesRoute extends Component {
   )
 
   storiesFailureData = () => (
-    <div className="stories-failure-container">
-      <img
-        src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899796/instashare-alert_dxppnx.png"
-        className="stories-failure-img"
-        alt="failure view"
-      />
-      <p className="stories-failure-text">
-        Something went wrong. Please try again
-      </p>
-      <button
-        type="button"
-        className="stories-failure-btn"
-        onClick={this.getStoriesData}
-      >
-        Try again
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {value => {
+        const {showTheme} = value
+        const textColor = !showTheme ? 'textDark' : 'textLight'
+        return (
+          <div className="stories-failure-container">
+            <img
+              src="https://res.cloudinary.com/dhr74n4vu/image/upload/v1667899796/instashare-alert_dxppnx.png"
+              className="stories-failure-img"
+              alt="failure view"
+            />
+            <p className={`stories-failure-text ${textColor}`}>
+              Something went wrong. Please try again
+            </p>
+            <button
+              type="button"
+              className="stories-failure-btn"
+              onClick={this.getStoriesData}
+            >
+              Try again
+            </button>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   storiesStatus = () => {
